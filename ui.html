@@ -14,10 +14,11 @@
     padding: 2em;
     display: flex;
     flex-direction: column;
+
   }
 
   div {
-    margin: 0.5em 0;
+    /* margin: 0.5em 0; */
   }
 
   input {
@@ -31,49 +32,84 @@
     flex-direction: column;
     gap: 0.25em;
     align-items:flex-start;
-    /* background-color: tomato;    */
   }
 
   .button-group {
     display: flex;
     gap: 1em;
     margin-left: auto;
-    margin-top: 2em;
+    margin-top: auto;
   }
+
+  .content-container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
+
+  .container-selectors {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 0.5em;
+  }
+
+  .container-preview {
+    width: 50%;
+  }
+
+  .footer {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
 </style>
 
-<div class="type">Select a case type</div>
+<!-- Content div -->
+<div class="content-container">
+  <div class="container-selectors">
+    <div class="type">Select a case type</div>
 
-<div class="radio">
-  <input
-    class="radio__button"
-    type="radio"
-    id="radioButton1"
-    name="variantGroup"
-    value="1"
-    />
-  <label for="radioButton1" class="radio__label">camelCase</label>
+    <div class="radio">
+      <input
+        class="radio__button"
+        type="radio"
+        id="radioButton1"
+        name="variantGroup"
+        value="1"
+        />
+      <label for="radioButton1" class="radio__label">camelCase</label>
+    
+      <input
+        class="radio__button"
+        type="radio"
+        id="radioButton2"
+        name="variantGroup"
+        value="2"
+        />
+      <label for="radioButton2" class="radio__label">kebab-case</label>
+    
+      <input
+        class="radio__button"
+        type="radio"
+        id="radioButton3"
+        name="variantGroup"
+        value="3"
+        />
+      <label for="radioButton3" class="radio__label">snake_case</label>
+    </div>
 
-  <input
-    class="radio__button"
-    type="radio"
-    id="radioButton2"
-    name="variantGroup"
-    value="2"
-    />
-  <label for="radioButton2" class="radio__label">kebab-case</label>
-
-  <input
-    class="radio__button"
-    type="radio"
-    id="radioButton3"
-    name="variantGroup"
-    value="3"
-    />
-  <label for="radioButton3" class="radio__label">snake_case</label>
+  </div>
+  <div class="container-preview"></div>
 </div>
 
-<div class="button-group">
-  <button class="button button--secondary" id="cancel">Cancel</button>
-  <button class="button button--primary" id="transform-case">Transform text</button>
+<!-- Footer -->
+<div class="footer">
+  <div class="button-group">
+    <button class="button button--secondary" id="cancel">Cancel</button>
+    <button class="button button--primary" id="transform-case">Convert</button>
+  </div>
 </div>
+
