@@ -17,9 +17,9 @@
 
   }
 
-  div {
-    /* margin: 0.5em 0; */
-  }
+  /* div {
+    margin: 0.5em 0;
+  } */
 
   input {
     display: block;
@@ -77,8 +77,9 @@
         class="radio__button"
         type="radio"
         id="radioButton1"
-        name="variantGroup"
-        value="1"
+        name="caseType"
+        value="camel"
+        checked="checked"
         />
       <label for="radioButton1" class="radio__label">camelCase</label>
     
@@ -86,8 +87,8 @@
         class="radio__button"
         type="radio"
         id="radioButton2"
-        name="variantGroup"
-        value="2"
+        name="caseType"
+        value="kebab"
         />
       <label for="radioButton2" class="radio__label">kebab-case</label>
     
@@ -95,8 +96,8 @@
         class="radio__button"
         type="radio"
         id="radioButton3"
-        name="variantGroup"
-        value="3"
+        name="caseType"
+        value="snake"
         />
       <label for="radioButton3" class="radio__label">snake_case</label>
     </div>
@@ -108,8 +109,21 @@
 <!-- Footer -->
 <div class="footer">
   <div class="button-group">
-    <button class="button button--secondary" id="cancel">Cancel</button>
-    <button class="button button--primary" id="transform-case">Convert</button>
+    <!-- <button class="button button--secondary" id="cancel">Cancel</button> -->
+    <button class="button button--primary" id="convert-case">Convert</button>
   </div>
 </div>
+
+<script>
+  // document.getElementById('cancel').onclick = () => {
+  //   const closePlugin = true;
+  // }
+
+  document.getElementById('convert-case').onclick = () => {
+    const caseType = document.querySelector(
+      'input[name="caseType"]:checked').value;
+
+    parent.postMessage({pluginMessage: {caseType}},'*');
+  }
+</script>
 

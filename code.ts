@@ -26,51 +26,69 @@ function toCamelCase(str: string) {
     .replace(/^\w/, (letter) => letter.toLowerCase()); // convert the first letter to lowercase
 }
 
+figma.ui.onmessage = pluginMessage => {
+  switch (pluginMessage.caseType) {
 
-// // Define the function to apply the font and text changes to a text node
-// async function applyTextChanges(node: TextNode) {
-//   // Load all the fonts used in the text content of the node asynchronously
-//   await Promise.all(
-//     node.getRangeAllFontNames(0, node.characters.length)
-//       .map(figma.loadFontAsync)
-//   );
+    case 'camel':
+      figma.notify("All text were changed to camelCase!");
+      break;
 
-//   // Convert the text content to kebab case
-//   const kebabCaseText = toKebabCase(node.characters);
+    case 'kebab':
+      figma.notify("All text were changed to kebab-case!")
+      break;
 
-//   // Update the text content and font of the node
-//   node.characters = kebabCaseText;
-// }
-// async function main() {
-//   // Get the current selection in Figma
-//   const selection = figma.currentPage.selection;
+    case 'snake':
+      figma.notify("All text were changed to snake_case!")
+      break;
+    }
+  }
 
-//   const fontPromises = selection.map(node => {
-//     if (node.type === 'TEXT') {
-//       return Promise.all(
-//         node.getRangeAllFontNames(0, node.characters.length)
-//           .map(figma.loadFontAsync)
-//       );
-//     } else {
-//       return Promise.resolve();
-//     }
-//   });
+/* 
+// Define the function to apply the font and text changes to a text node
+async function applyTextChanges(node: TextNode) {
+  // Load all the fonts used in the text content of the node asynchronously
+  await Promise.all(
+    node.getRangeAllFontNames(0, node.characters.length)
+      .map(figma.loadFontAsync)
+  );
 
-//   // Wait for all the font promises to resolve
-//   await Promise.all(fontPromises);
+  // Convert the text content to kebab case
+  const kebabCaseText = toKebabCase(node.characters);
 
-//   // Loop through each selected item
-//   for (const node of selection) {
-//     if (node.type === 'TEXT') {
-//       // Apply the font and text changes to the node
-//       await applyTextChanges(node);
-//     }
-//   }
+  // Update the text content and font of the node
+  node.characters = kebabCaseText;
+}
+async function main() {
+  // Get the current selection in Figma
+  const selection = figma.currentPage.selection;
 
-//   // Notify the user and close the plugin
-//   figma.notify("All text were changed to kebab-case!")
-//   figma.closePlugin();
-// }
+  const fontPromises = selection.map(node => {
+    if (node.type === 'TEXT') {
+      return Promise.all(
+        node.getRangeAllFontNames(0, node.characters.length)
+          .map(figma.loadFontAsync)
+      );
+    } else {
+      return Promise.resolve();
+    }
+  });
 
-// // Call the main function to start the plugin
-// main();
+  // Wait for all the font promises to resolve
+  await Promise.all(fontPromises);
+
+  // Loop through each selected item
+  for (const node of selection) {
+    if (node.type === 'TEXT') {
+      // Apply the font and text changes to the node
+      await applyTextChanges(node);
+    }
+  }
+
+  // Notify the user and close the plugin
+  figma.notify("All text were changed to kebab-case!")
+  figma.closePlugin();
+}
+
+// Call the main function to start the plugin
+main();
+*/
