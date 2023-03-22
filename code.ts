@@ -29,19 +29,28 @@ function toCamelCase(str: string) {
 figma.ui.onmessage = pluginMessage => {
   switch (pluginMessage.caseType) {
 
-    case 'camel':
-      figma.notify("All text were changed to camelCase!");
+    case 'camelCase':
+      // figma.notify("All text were changed to camelCase!");
       break;
 
-    case 'kebab':
-      figma.notify("All text were changed to kebab-case!")
+    case 'kebab-case':
+      // figma.notify("All text were changed to kebab-case!")
       break;
 
-    case 'snake':
-      figma.notify("All text were changed to snake_case!")
+    case 'snake_case':
+      // figma.notify("All text were changed to snake_case!")
       break;
     }
-  }
+
+  figma.notify(`All text layers were changed to ${pluginMessage.caseType}`)
+  figma.closePlugin();
+}
+
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
 
 /* 
 // Define the function to apply the font and text changes to a text node
