@@ -1,0 +1,79 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css"
+/>
+
+<style>
+  * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  }
+
+  body {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  div {
+    margin: 0.5em 0;
+  }
+
+  input {
+    display: block;
+  }
+
+  .radio {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    align-items:flex-start;
+    /* background-color: tomato;    */
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1em;
+    margin-left: auto;
+    margin-top: 2em;
+  }
+</style>
+
+<div class="type">Select a case type</div>
+
+<div class="radio">
+  <input
+    class="radio__button"
+    type="radio"
+    id="radioButton1"
+    name="variantGroup"
+    value="1"
+    />
+  <label for="radioButton1" class="radio__label">camelCase</label>
+
+  <input
+    class="radio__button"
+    type="radio"
+    id="radioButton2"
+    name="variantGroup"
+    value="2"
+    />
+  <label for="radioButton2" class="radio__label">kebab-case</label>
+
+  <input
+    class="radio__button"
+    type="radio"
+    id="radioButton3"
+    name="variantGroup"
+    value="3"
+    />
+  <label for="radioButton3" class="radio__label">snake_case</label>
+</div>
+
+<div class="button-group">
+  <button class="button button--secondary" id="cancel">Cancel</button>
+  <button class="button button--primary" id="transform-case">Transform text</button>
+</div>
