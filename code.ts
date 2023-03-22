@@ -26,48 +26,7 @@ function toCamelCase(str: string) {
     .replace(/^\w/, (letter) => letter.toLowerCase()); // convert the first letter to lowercase
 }
 
-figma.ui.onmessage = pluginMessage => {
-  switch (pluginMessage.caseType) {
-
-    case 'camelCase':
-      // figma.notify("All text were changed to camelCase!");
-      break;
-
-    case 'kebab-case':
-      // figma.notify("All text were changed to kebab-case!")
-      break;
-
-    case 'snake_case':
-      // figma.notify("All text were changed to snake_case!")
-      break;
-    }
-
-  figma.notify(`All text layers were changed to ${pluginMessage.caseType}`)
-  figma.closePlugin();
-}
-
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-
-/* 
-// Define the function to apply the font and text changes to a text node
-async function applyTextChanges(node: TextNode) {
-  // Load all the fonts used in the text content of the node asynchronously
-  await Promise.all(
-    node.getRangeAllFontNames(0, node.characters.length)
-      .map(figma.loadFontAsync)
-  );
-
-  // Convert the text content to kebab case
-  const kebabCaseText = toKebabCase(node.characters);
-
-  // Update the text content and font of the node
-  node.characters = kebabCaseText;
-}
-async function main() {
+async function caseConversion(caseType: string) {
   // Get the current selection in Figma
   const selection = figma.currentPage.selection;
 
@@ -89,15 +48,30 @@ async function main() {
   for (const node of selection) {
     if (node.type === 'TEXT') {
       // Apply the font and text changes to the node
-      await applyTextChanges(node);
+      switch (caseType) {
+        case "camelCase":
+          node.characters = toCamelCase(node.characters);
+          break;
+        
+        case "kebab-case":
+          node.characters = toKebabCase(node.characters);
+          break;
+    
+        case "snake_case":
+          node.characters = toSnakeCase(node.characters);
+          break;
+      }
     }
   }
 
-  // Notify the user and close the plugin
-  figma.notify("All text were changed to kebab-case!")
+  figma.notify(`All text layers were changed to ${caseType}`)
   figma.closePlugin();
 }
 
-// Call the main function to start the plugin
-main();
-*/
+figma.ui.onmessage = async (pluginMessage) => {
+  const selection = figma.currentPage.selection;
+  let caseType = pluginMessage.caseType;
+
+  // Execute the main function
+  await caseConversion(caseType);
+}
