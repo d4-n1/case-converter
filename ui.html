@@ -3,7 +3,7 @@
   href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css"
 />
 
-<style>
+<style id="figma-style">
   * {
   padding: 0;
   margin: 0;
@@ -14,7 +14,16 @@
     padding: 2em;
     display: flex;
     flex-direction: column;
+  }
 
+  .figma-light body {
+  background-color: white;
+  color: blue;
+  }
+
+  .figma-dark body {
+    background-color: black;
+    color: red;
   }
 
   input {
